@@ -3,8 +3,7 @@
 ### Lesson 1
   * Introduction and Guidelines
   * OOD Fundamentals I
-      * Classes
-      * Visibility
+      * Classes, Fields, Methods, Properties, Visibility, Encapsulation
       * Exceptions
       * Generics/Templates
       * Collections
