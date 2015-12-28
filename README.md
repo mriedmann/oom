@@ -2,10 +2,16 @@
 
 ### Lesson 1
   * Introduction and Guidelines
-  * **OOD Fundamentals I**: Classes, Visibility, Exceptions, Iterators, Templates, Collections
+  * OOD Fundamentals I
+      * Classes
+      * Visibility
+      * Exceptions
+      * Generics/Templates
+      * Collections
+      * Iterators
   * Tasks
-    1. register github account
-    2. clone repository
+    * T1.1 register github account
+    * T1.2 fork repository https://github.com/bicoom/oom
 
 ### Lesson 2
   * **OOP Kick-Off**: Project, Packet Manager, Documentation, Version Control, Issue Tracking
