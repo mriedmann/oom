@@ -1,0 +1,4 @@
+Name                        Gruppe Email                     Github-Username
+--------------------------- ------ ------------------------- ----------------
+Stefan Maierhofer           2A1    sm@technikum-wien.at      bicoom
+
