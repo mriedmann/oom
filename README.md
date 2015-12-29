@@ -3,15 +3,16 @@
 ### Lesson 1 - Kick Off
   * Introduction and Guidelines
   * Setting up the development environment
-	* C#
+    * C#
     * Git
+  * [Tasks](https://github.com/bicoom/oom/wiki/Lesson-1) 
 
 ### Lesson 2 - Fundamentals I
-    * Classes, Fields, Methods, Properties, Visibility, Encapsulation
-    * Exceptions
-    * Generics/Templates
-    * Collections
-    * Iterators
+  * Classes, Fields, Methods, Properties, Visibility, Encapsulation
+  * Exceptions
+  * Generics/Templates
+  * Collections
+  * Iterators
 
 ### Lesson 3
   * **OOD Fundamentals II**: Inheritance, Interfaces, Polymorphism, Lambda-Functions, Type Inference
