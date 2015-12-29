@@ -11,15 +11,15 @@
   * [Tasks](https://github.com/bicoom/oom/wiki/Lesson-1) to be completed for Lesson 2
 
 ### Lesson 2 - Fundamentals I
-  * classes, fields, methods, properties, visibility
-  * encapsulation
-  * lambda functions
+  * classes, fields, methods, properties, lambdas, visibility, encapsulation
+  * toolkit: web requests
 
 ### Lesson 3 - Fundamentals II
   * inheritance, interfaces, polymorphism
 
-### Lesson 4 - Lab
-  * unit tests, files, serialization (JSON)
+### Lesson 4 - Software Quality
+  * refactoring, unit tests, continuous integration
+  * toolkit: files, serialization (JSON)
 
 ### Lesson 5 - Code Review
 
