@@ -8,7 +8,6 @@
   * Hello World
     * basic console app
     * language constructs, type inference, generics, exceptions, collections
-    * 
   * [Tasks](https://github.com/bicoom/oom/wiki/Lesson-1) 
 
 ### Lesson 2 - Fundamentals I
