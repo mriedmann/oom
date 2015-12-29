@@ -7,36 +7,27 @@
     * Git
   * Hello World
     * basic console app
-    * language constructs
-    * type inference
-    * lambdas
+    * language constructs, type inference, generics, exceptions, collections
+    * 
   * [Tasks](https://github.com/bicoom/oom/wiki/Lesson-1) 
 
-### Lesson 2 - Basic Concepts I
-  * Classes, Fields, Methods, Properties, Visibility, Encapsulation
-  * Exceptions
-  * Generics/Templates
-  * Collections
-  * Iterators
+### Lesson 2 - Fundamentals I
+  * classes, fields, methods, properties, visibility
+  * encapsulation
+  * lambda functions
 
-### Lesson 3 - Basic Concepts II
-  * Inheritance
-  * Interfaces
-  * Polymorphism
+### Lesson 3 - Fundamentals II
+  * inheritance, interfaces, polymorphism
 
-### Lesson 4
-  * **OOP Lab**: Unit Tests, Files, Serialization (JSON)
+### Lesson 4 - Lab
+  * unit tests, files, serialization (JSON)
 
-### Lesson 5
-  * **OOP Code Review**
+### Lesson 5 - Code Review
 
 ### Lesson 6 - Asynchronous Programming
-  * Asynchrony
-  * Futures/Promises
-  * Continuations
+  * futures/promises/tasks
+  * continuation-based programming
 
-### Lesson 7
-  * **OOP Code Review**
+### Lesson 7 - Code Review
 
-### Lesson 8
-  * **Project Evaluation**
+### Lesson 8 - Final Evaluation
