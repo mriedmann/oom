@@ -23,7 +23,8 @@
 
 ### Lesson 5 - Code Review
 
-### Lesson 6 - Asynchronous Programming
+### Lesson 6 - Lab
+  * asynchronous programming
   * futures/promises/tasks
   * continuation-based programming
 
