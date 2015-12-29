@@ -24,9 +24,7 @@
 ### Lesson 5 - Code Review
 
 ### Lesson 6 - Lab
-  * asynchronous programming
-  * futures/promises/tasks
-  * continuation-based programming
+  * asynchronous programming, futures/promises/tasks, continuations
 
 ### Lesson 7 - Code Review
 
