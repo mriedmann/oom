@@ -16,6 +16,7 @@
 
 ### Lesson 3 - Fundamentals II
   * inheritance, interfaces, polymorphism
+  * toolkit: package managers (NuGet), serialization (JSON), files
 
 ### Lesson 4 - Software Quality
   * refactoring, unit tests, continuous integration
