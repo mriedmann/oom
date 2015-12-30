@@ -1,5 +1,7 @@
 # Objektorientierte Methoden (OOM)
 
+[![Build Status](https://ci.appveyor.com/api/projects/status/6e5h7fiyhtwdpbce/branch/master?svg=true)
+
 ### Lesson 1 - Kick Off
   * Introduction and Guidelines
   * Setting up the development environment
