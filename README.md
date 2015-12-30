@@ -18,6 +18,7 @@
 ### Lesson 3 - Fundamentals II
   * inheritance, interfaces, polymorphism
   * toolkit: package managers (NuGet), serialization (JSON), files
+  * [Tasks to be completed for Lesson 4](https://github.com/bicoom/oom/wiki/Lesson-3)
 
 ### Lesson 4 - Software Quality
   * refactoring, unit tests, continuous integration
