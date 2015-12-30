@@ -1,16 +1,19 @@
-﻿ using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-// add unit tests project, reference lesson4 project
-// refactor: extract Price + unit tests
-// refactor: IItem: Price Price { get; }, [JsonIgnore], [JsonConstructor]
-// https://ci.appveyor.com (lessons\lesson4\lesson4.sln, nuget restore lessons\lesson4\lesson4.sln)
+// add IItem
+// Book:IItem
+// add GiftCard:IItem (copy&paste GetPrice currency conversion)
+// Main: add gift cards to items array
+// Main: foreach item print description/price (polymorphic)
+// add Json.NET
+// add (de)serialization example
 
-namespace lesson4
+namespace lesson3
 {
     class MainClass
     {
@@ -31,7 +34,7 @@ namespace lesson4
             var currency = Currency.EUR;
             foreach (var x in items)
             {
-                Console.WriteLine($"{x.Description.Truncate(50),-50} {x.Price.ConvertTo(currency).Amount,8:0.00} {currency}");
+                Console.WriteLine($"{x.Description.Truncate(50),-50} {x.GetPrice(currency),8:0.00} {currency}");
             }
 
             SerializationExample(items);
@@ -59,7 +62,7 @@ namespace lesson4
             var textFromFile = File.ReadAllText(filename);
             var itemsFromFile = JsonConvert.DeserializeObject<IItem[]>(textFromFile, settings);
             var currency = Currency.EUR;
-            foreach (var x in itemsFromFile) Console.WriteLine($"{x.Description.Truncate(50),-50} {x.Price.ConvertTo(currency).Amount,8:0.00} {currency}");
+            foreach (var x in itemsFromFile) Console.WriteLine($"{x.Description.Truncate(50),-50} {x.GetPrice(currency),8:0.00} {currency}");
         }
     }
 }
