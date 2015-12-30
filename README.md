@@ -1,7 +1,5 @@
 # Objektorientierte Methoden (OOM)
 
-[![Build status](https://ci.appveyor.com/api/projects/status/6e5h7fiyhtwdpbce/branch/master?svg=true)](https://ci.appveyor.com/project/bicoom/oom/branch/master)
-
 ### Lesson 1 - Kick Off
   * Introduction and Guidelines
   * Setting up the development environment
@@ -23,6 +21,7 @@
 ### Lesson 4 - Software Quality
   * refactoring, unit tests, continuous integration
   * toolkit: files, serialization (JSON)
+  * [![Build status](https://ci.appveyor.com/api/projects/status/6e5h7fiyhtwdpbce/branch/master?svg=true)](https://ci.appveyor.com/project/bicoom/oom/branch/master)
 
 ### Lesson 5 - Code Review
 
