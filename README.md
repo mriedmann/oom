@@ -13,6 +13,7 @@
 ### Lesson 2 - Fundamentals I
   * classes, fields, methods, properties, lambdas, visibility, encapsulation
   * toolkit: web requests
+  * [Tasks](https://github.com/bicoom/oom/wiki/Lesson-2) to be completed for Lesson 3
 
 ### Lesson 3 - Fundamentals II
   * inheritance, interfaces, polymorphism
