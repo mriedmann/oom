@@ -26,8 +26,6 @@ namespace lesson2
 			Console.WriteLine();
 			Console.WriteLine("ISBNs");
 			foreach (var x in isbns) Console.WriteLine(x);
-
-
 		}
 	}
 }
