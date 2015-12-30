@@ -1,6 +1,6 @@
 # Objektorientierte Methoden (OOM)
 
-[![Build Status](https://ci.appveyor.com/api/projects/status/6e5h7fiyhtwdpbce/branch/master?svg=true)
+[![Build status](https://ci.appveyor.com/api/projects/status/6e5h7fiyhtwdpbce/branch/master?svg=true)](https://ci.appveyor.com/project/bicoom/oom/branch/master)
 
 ### Lesson 1 - Kick Off
   * Introduction and Guidelines
