@@ -30,10 +30,16 @@
   * review of student projects
   * definition of tasks/issues
   * time for questions, bugfixing, problem solving
+  * [Tasks to be completed for Lesson 6](https://github.com/bicoom/oom/wiki/Lesson-5)
 
 ### Lesson 6 - Lab
   * asynchronous programming, futures/promises/tasks, continuations
+  * [Tasks to be completed for Lesson 7](https://github.com/bicoom/oom/wiki/Lesson-6)
 
 ### Lesson 7 - Code Review
+  * review of student projects
+  * definition of tasks/issues
+  * time for questions, bugfixing, problem solving
+  * [Tasks to be completed for Lesson 8](https://github.com/bicoom/oom/wiki/Lesson-7)
 
 ### Lesson 8 - Final Evaluation
