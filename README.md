@@ -17,7 +17,7 @@
 
 ### Lesson 3 - Fundamentals II
   * inheritance, interfaces, polymorphism
-  * toolkit: package managers (NuGet), serialization (JSON), files
+  * toolkit: package managers (NuGet)
   * [Tasks to be completed for Lesson 4](https://github.com/bicoom/oom/wiki/Lesson-3)
 
 ### Lesson 4 - Software Quality
@@ -32,8 +32,10 @@
   * time for questions, bugfixing, problem solving
   * [Tasks to be completed for Lesson 6](https://github.com/bicoom/oom/wiki/Lesson-5)
 
-### Lesson 6 - Lab
-  * asynchronous programming, futures/promises/tasks, continuations
+### Lesson 6 - Events and Asynchrony
+  * push vs. pull
+  * asynchronous programming
+  * futures/promises/tasks, continuations
   * [Tasks to be completed for Lesson 7](https://github.com/bicoom/oom/wiki/Lesson-6)
 
 ### Lesson 7 - Code Review
