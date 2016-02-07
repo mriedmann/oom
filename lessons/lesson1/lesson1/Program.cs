@@ -17,16 +17,16 @@ namespace lesson1
             ///////////////////////////////////////////////////////////////////////
             // variables
             int a = 5;
-            string hello = "Hello World!";
+            string s = "abc";
             double x = 123.456;
             bool b = true;
 
             ///////////////////////////////////////////////////////////////////////
-            // print to console
-            Console.WriteLine(hello);
+            // instead of printf use Console.WriteLine
+            Console.WriteLine("Hello World");
 
             ///////////////////////////////////////////////////////////////////////
-            // string and other values can be concatenated using + 
+            // strings and other values can be concatenated using + 
             Console.WriteLine("The value of x*a is " + (x * a) + ", and b is " + b + ".");
             // ... or you can use place holders ...
             Console.WriteLine("The value of x*a is {0}, and b is {1}.", x * a, b);
