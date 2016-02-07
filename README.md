@@ -40,4 +40,4 @@
   * definition of tasks/issues
   * time for questions, bugfixing, problem solving
 
-### Lesson 8 - Final Evaluation
+### [Lesson 8 - Final Evaluation](https://github.com/bicoom/oom/wiki/Lesson-8)
