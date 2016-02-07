@@ -10,7 +10,7 @@
     * Git
   * Hello World
     * basic console app
-    * language constructs, type inference, generics, exceptions, collections
+    * C# for C programmers - first steps
 
 ### [Lesson 2 - Fundamentals I](https://github.com/bicoom/oom/wiki/Lesson-2)
   * classes, fields, methods, properties, lambdas, visibility, encapsulation
