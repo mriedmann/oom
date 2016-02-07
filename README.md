@@ -1,5 +1,5 @@
 # Objektorientierte Methoden (OOM)
-Part II: Object-Oriented Design (OOD) and Programming (OOP)
+## Object-Oriented Design (OOD) and Programming (OOP)
 
 ### Lesson 1 - Kick Off
   * Introduction and Guidelines
