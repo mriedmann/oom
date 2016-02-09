@@ -13,7 +13,7 @@ namespace T2
 {
     
 
-    public class Book
+    public class Book : IBook
     {
         public string Title { get; set; }
         public ISBN ISBN { get; set; }
@@ -62,6 +62,8 @@ namespace T2
             getDataFromApi();
             lastSuccessfullApiCall = DateTime.Now;
         }
+
+
 
         private void getDataFromApi()
         {

@@ -45,7 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Book.cs" />
-    <Compile Include="Isbn.cs" />
+    <Compile Include="IBook.cs" />
+    <Compile Include="IISBN.cs" />
+    <Compile Include="ISBN.cs" />
+    <Compile Include="ISBN10.cs" />
+    <Compile Include="ISBN13.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
