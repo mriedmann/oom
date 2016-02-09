@@ -1,4 +1,6 @@
-﻿namespace T2
+﻿using System;
+
+namespace T2
 {
     public class ISBN : IISBN
     {
@@ -61,6 +63,11 @@
 
         private IISBN innerObject;
 
+        protected ISBN()
+        {
+
+        }
+
         public ISBN(IISBN innerObject)
         {
             this.innerObject = innerObject;
@@ -69,14 +76,16 @@
         public ISBN(string isbnNumber)
         {
             int isbnLength = isbnNumber.Replace("-", "").Replace(" ", "").Length;
-            if (s.Length == 10)
-
+            if (isbnLength == 10)
+                innerObject = new ISBN10(isbnNumber);
+            else if (isbnLength == 13)
+                innerObject = new ISBN13(isbnNumber);
+            else
                 throw new ArgumentException("Invalid Format", "isbnText");
-
         }
 
         //ex. 978-0-14026-690-0
-        public char CalculateCheckDigit()
+        public virtual char CalculateCheckDigit()
         {
             return innerObject.CalculateCheckDigit();
         }

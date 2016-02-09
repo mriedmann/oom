@@ -10,12 +10,7 @@ namespace T2
 {
     class Program
     {
-        enum CacheMode
-        {
-            NO,
-            WEB,
-            OBJ
-        }
+        enum CacheMode { OBJ=1, WEB=2, NO=3 }
 
         static void Main(string[] args)
         {
@@ -30,8 +25,18 @@ namespace T2
             string cacheFilePath = Path.Combine(Environment.CurrentDirectory, "objcache.json");
 
             CacheMode cMode = CacheMode.OBJ;
+            CacheMode dcMode = (File.Exists(cacheFilePath) ? CacheMode.OBJ : CacheMode.WEB);
 
-            Console.Write("Where should I load Data from?\n  1) Object Cache\n  2) Web Cache\n  3) Nowhere\n[1]:");
+            Console.WriteLine("Where should I load Data from?");
+
+            if (dcMode == cMode)
+                Console.WriteLine("  1) Object Cache");
+
+            Console.WriteLine("  2) Web Cache");
+            Console.WriteLine("  3) Nowhere\n");
+
+            Console.Write("[{0}]:", (int)dcMode);
+
             string input = Console.ReadLine();
 
             Console.Clear();
@@ -41,6 +46,7 @@ namespace T2
                 case "1": cMode = CacheMode.OBJ; break;
                 case "2": cMode = CacheMode.WEB; break;
                 case "3": cMode = CacheMode.NO;  break;
+                default: cMode = dcMode; break;
             }
 
             List<Book> books = new List<Book>();
