@@ -1,6 +1,6 @@
 ﻿namespace T2
 {
-    public abstract class ISBN : IISBN
+    public class ISBN : IISBN
     {
         //A variable set of digits that identify the country/region in which the ISBN code was assigned. 
         //Zero ("0") means that the book belongs to an English speaking area.
@@ -59,11 +59,26 @@
             }
         }
 
-        public ISBN()
+        private IISBN innerObject;
+
+        public ISBN(IISBN innerObject)
         {
+            this.innerObject = innerObject;
+        }
+
+        public ISBN(string isbnNumber)
+        {
+            int isbnLength = isbnNumber.Replace("-", "").Replace(" ", "").Length;
+            if (s.Length == 10)
+
+                throw new ArgumentException("Invalid Format", "isbnText");
+
         }
 
         //ex. 978-0-14026-690-0
-        public abstract char CalculateCheckDigit();
+        public char CalculateCheckDigit()
+        {
+            return innerObject.CalculateCheckDigit();
+        }
     }
 }

@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -24,9 +25,14 @@ namespace T2
 
         public DateTime PriceDate { get; private set; }
 
-        private DateTime lastSuccessfullApiCall = DateTime.MinValue;
-
         private const string apiBaseUrl = "https://www.googleapis.com/books/v1/volumes?q=isbn:";
+        private readonly TimeSpan maxCacheAge = TimeSpan.FromHours(12);
+
+        private string cacheFilePath {
+            get {
+                return Path.Combine(Environment.CurrentDirectory, ISBN.ValueWithoutHyphens + ".json");
+            }
+        }
 
         private Book()
         {
@@ -56,27 +62,54 @@ namespace T2
 
         public void LoadFromApi(bool force=false)
         {
-            if (!force && (DateTime.Now - lastSuccessfullApiCall).TotalMinutes < 1)
-                return; //still up-to-date
+            if (force || getCacheAge() > maxCacheAge)
+                updateCacheFromApi();
 
-            getDataFromApi();
-            lastSuccessfullApiCall = DateTime.Now;
+            string json = readCache();
+
+            dynamic obj = JsonConvert.DeserializeObject(json);
+            dynamic volInfo = obj.items[0].volumeInfo;
+
+            Title = volInfo.title;
+            Authors = ((JArray)volInfo.authors).Select(x => x.ToString()).ToList();
+            PublishedAt = volInfo.publishedDate;
         }
 
+        private TimeSpan getCacheAge()
+        {
+            if (!File.Exists(cacheFilePath))
+                return TimeSpan.MaxValue;
 
+            return DateTime.Now - File.GetLastWriteTime(cacheFilePath);
+        }
 
-        private void getDataFromApi()
+        private void writeCache(string json)
+        {
+            using (StreamWriter sw = new StreamWriter(cacheFilePath))
+            {
+                sw.Write(json);
+            }
+        }
+
+        private string readCache()
+        {
+            using (StreamReader sr = new StreamReader(cacheFilePath))
+            {
+                return sr.ReadToEnd();
+            }
+        }
+
+        private void updateCacheFromApi()
         {
             string apiUrl = apiBaseUrl + ISBN.ValueWithoutHyphens;
 
             WebRequest request = WebRequest.Create(apiUrl);
             WebResponse response = request.GetResponse();
-            using (var jsonReader = JsonReaderWriterFactory.CreateJsonReader(response.GetResponseStream(), new System.Xml.XmlDictionaryReaderQuotas()))
+
+            using (var sr = new StreamReader(response.GetResponseStream()))
             {
-                var root = XElement.Load(jsonReader);
-                Title = root.XPathSelectElement("//title").Value;
-                PublishedAt = root.XPathSelectElement("//publishedDate").Value;
-                Authors = root.XPathSelectElement("//authors").Elements().Select(x => x.Value).ToList();
+                string json = sr.ReadToEnd();
+                writeCache(json);
             };
         }
     }

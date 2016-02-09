@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +10,13 @@ namespace T2
 {
     class Program
     {
+        enum CacheMode
+        {
+            NO,
+            WEB,
+            OBJ
+        }
+
         static void Main(string[] args)
         {
             string[] testNumbers = new string[]
@@ -18,15 +27,31 @@ namespace T2
                 "3-492-28621-6",
                 "978-3-492-97223-9"
             };
+            string cacheFilePath = Path.Combine(Environment.CurrentDirectory, "objcache.json");
+
+            CacheMode cMode = CacheMode.OBJ;
+
+            Console.Write("Where should I load Data from?\n  1) Object Cache\n  2) Web Cache\n  3) Nowhere\n[1]:");
+            string input = Console.ReadLine();
+
+            Console.Clear();
+
+            switch (input)
+            {
+                case "1": cMode = CacheMode.OBJ; break;
+                case "2": cMode = CacheMode.WEB; break;
+                case "3": cMode = CacheMode.NO;  break;
+            }
 
             List<Book> books = new List<Book>();
 
-            foreach(string number in testNumbers)
-            {
-                Book newBook = new Book(number);
-                newBook.LoadFromApi();
-                books.Add(newBook);
-            }
+            if (cMode == CacheMode.OBJ)
+                books = loadFromCache(cacheFilePath);
+            else
+                books = loadFromWeb(cMode, testNumbers);
+
+            saveToCache(cacheFilePath, books);
+                
             string hr = new string('-', 79);
             Console.WriteLine(hr);
             Console.WriteLine("| {0,17} | {1,30} | {2,10} | {3,9} |", "ISBN", "Title", "Published","Price");
@@ -35,6 +60,37 @@ namespace T2
                 Console.WriteLine("| {0,17} | {1,30} | {2,10} | {3,5} EUR |", book.ISBN, book.Title, book.PublishedAt, book.PriceInEUR);
             Console.WriteLine(hr);
             Console.ReadLine();
+        }
+
+        private static void saveToCache(string cacheFilePath, List<Book> books)
+        {
+            string json = JsonConvert.SerializeObject(books);
+            using (StreamWriter sr = new StreamWriter(cacheFilePath))
+                sr.Write(json);
+        }
+
+        private static List<Book> loadFromWeb(CacheMode cMode, string[] testNumbers)
+        {
+            List<Book> books = new List<Book>();
+
+            foreach (string number in testNumbers)
+            {
+                Book newBook = new Book(number);
+                newBook.LoadFromApi(cMode == CacheMode.NO);
+                books.Add(newBook);
+            }
+
+            return books;
+        }
+
+        private static List<Book> loadFromCache(string cacheFilePath)
+        {
+            List<Book> books = new List<Book>();
+
+            using(StreamReader sr = new StreamReader(cacheFilePath))
+                books = JsonConvert.DeserializeObject<List<Book>>(sr.ReadToEnd());
+
+            return books;
         }
     }
 }
