@@ -7,6 +7,8 @@ namespace Tests
     [TestFixture]
     public class Test
     {
+        #region Price & ExchangeRates
+
         [Test]
         public void CanCreatePrice()
         {
@@ -35,6 +37,39 @@ namespace Tests
             var x = new Price(1, Currency.EUR);
             Assert.IsTrue(x.ConvertTo(Currency.JPY).Amount > 1);
         }
+
+        [Test]
+        public void CanAddPrices()
+        {
+            var x = new Price(1, Currency.EUR) + new Price(1, Currency.EUR);
+            Assert.IsTrue(x.Unit == Currency.EUR);
+            Assert.IsTrue(x.Amount == 2);
+        }
+
+        [Test]
+        public void CanAddPricesWithDifferentCurrency()
+        {
+            var x = new Price(1, Currency.EUR) + new Price(1, Currency.USD);
+            Assert.IsTrue(x.Unit == Currency.EUR);
+            Assert.IsTrue(x.Amount > 1);
+        }
+
+        [Test]
+        public void CanComparePrices()
+        {
+            var a = new Price(1, Currency.EUR);
+            var b = new Price(1, Currency.EUR);
+            Assert.IsFalse(a < b);
+            Assert.IsTrue(a <= b);
+            Assert.IsTrue(a == b);
+            Assert.IsFalse(a != b);
+            Assert.IsTrue(a >= b);
+            Assert.IsFalse(a > b);
+        }
+
+        #endregion
+
+        #region GiftCard
 
         [Test]
         public void CanCreateGiftCard()
@@ -69,6 +104,8 @@ namespace Tests
             {
             }
         }
+
+        #endregion
     }
 }
 
