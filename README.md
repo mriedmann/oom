@@ -5,7 +5,7 @@
   * Introduction and Guidelines
     * [Wiki](https://github.com/bicoom/oom/wiki)
     * [Issues](https://github.com/bicoom/oom/issues)
-  * Setting up the development environment
+  * Setting up your development environment
     * C#
     * Git
   * Hello World
