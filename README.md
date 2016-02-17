@@ -29,6 +29,7 @@
     * polymorphism
   * Toolkit
     * package managers (NuGet)
+   * serialization (JSON)
 
 ### [Lesson 4 - Software Quality](https://github.com/bicoom/oom/wiki/Lesson-4)
   * Concepts
@@ -37,7 +38,6 @@
     * continuous integration [![Build status](https://ci.appveyor.com/api/projects/status/6e5h7fiyhtwdpbce/branch/master?svg=true)](https://ci.appveyor.com/project/bicoom/oom/branch/master)
   * Toolkit
       * files
-      * serialization (JSON)
       
 ### [Lesson 5 - Code Review](https://github.com/bicoom/oom/wiki/Lesson-5)
   * review of student projects
