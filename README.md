@@ -18,12 +18,13 @@
     * methods
     * fields and properties
     * visibility and encapsulation
-    * lambdas
   * Toolkit
     * web requests
 
 ### [Lesson 3 - Fundamentals II](https://github.com/bicoom/oom/wiki/Lesson-3)
   * Concepts
+    * methods as values
+    * lambda expressions
     * inheritance
     * interfaces
     * polymorphism
