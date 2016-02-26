@@ -9,6 +9,9 @@ namespace lesson4
     {
         private static Dictionary<string, decimal> s_rates = new Dictionary<string, decimal>();
 
+        /// <summary>
+        /// Gets exchange rate 'from' currency 'to' another currency.
+        /// </summary>
         public static decimal Get(Currency from, Currency to)
         {
             // exchange rate is 1:1 for same currency

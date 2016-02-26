@@ -5,10 +5,8 @@ using lesson4;
 namespace Tests
 {
     [TestFixture]
-    public class Test
+    public class PriceTest
     {
-        #region Price & ExchangeRates
-
         [Test]
         public void CanCreatePrice()
         {
@@ -16,21 +14,7 @@ namespace Tests
             Assert.IsTrue(x.Amount == 1);
             Assert.IsTrue(x.Unit == Currency.EUR);
         }
-
-        [Test]
-        public void ExchangeRateForSameCurrencyIsOne()
-        {
-            var x = ExchangeRates.Get(Currency.EUR, Currency.EUR);
-            Assert.IsTrue(x == 1);
-        }
-
-        [Test]
-        public void ExchangeRateForDifferentCurrencyIsNotOne()
-        {
-            var x = ExchangeRates.Get(Currency.EUR, Currency.JPY);
-            Assert.IsTrue(x != 1);
-        }
-
+        
         [Test]
         public void CanConvertPrice()
         {
@@ -66,46 +50,6 @@ namespace Tests
             Assert.IsTrue(a >= b);
             Assert.IsFalse(a > b);
         }
-
-        #endregion
-
-        #region GiftCard
-
-        [Test]
-        public void CanCreateGiftCard()
-        {
-            var x = new GiftCard(100, Currency.EUR);
-            Assert.IsTrue(x.IsRedeemed == false);
-        }
-
-        [Test]
-        public void CanRedeemGiftCard()
-        {
-            var x = new GiftCard(100, Currency.EUR);
-            Assert.IsTrue(x.IsRedeemed == false);
-            x.Redeem();
-            Assert.IsTrue(x.IsRedeemed == true);
-        }
-
-        [Test]
-        public void CannotRedeemGiftCardTwice()
-        {
-            var x = new GiftCard(100, Currency.EUR);
-            Assert.IsTrue(x.IsRedeemed == false);
-            x.Redeem();
-            Assert.IsTrue(x.IsRedeemed == true);
-
-            try
-            {
-                x.Redeem();
-                Assert.Fail();
-            }
-            catch
-            {
-            }
-        }
-
-        #endregion
     }
 }
 
