@@ -16,7 +16,7 @@ namespace lesson4
         {
             var items = new IItem[]
             {
-                new Book("Real-Time Rendering", "978-1568814247", 78.95m, Currency.EUR),
+                nw Book("Real-Time Rendering", "978-1568814247", 78.95m, Currency.EUR),
                 new Book("The Hitchhiker's Guide to the Galaxy", "978-0345391803", 6.60m, Currency.EUR),
                 new Book("C# 6.0 in a Nutshell", "978-1491927069", 44.95m, Currency.EUR),
                 new Book("Trillions: Thriving in the Emerging Information Ecology", "978-1118176078", 35.24m, Currency.EUR),
