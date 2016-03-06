@@ -55,4 +55,4 @@
   * time for questions, bugfixing, problem solving
 
 ### [Lesson 8 - Final Evaluation](https://github.com/bicoom/oom/wiki/Lesson-8)
-  * final evaluation of student projects and associated tasks/issues
+  * final evaluation of student projects
