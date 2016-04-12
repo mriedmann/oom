@@ -44,15 +44,14 @@
   * definition of tasks/issues
   * time for questions, bugfixing, problem solving
 
-### [Lesson 6 - Events and Asynchrony](https://github.com/bicoom/oom/wiki/Lesson-6)
-  * push vs. pull
-  * asynchronous programming
-  * futures/promises/tasks, continuations
+### [Lesson 6 - Sequences, Queries and Combinators](https://github.com/bicoom/oom/wiki/Lesson-6)
+  * IEnumerable, foreach, yield return
+  * queries and combinators
 
-### [Lesson 7 - Code Review](https://github.com/bicoom/oom/wiki/Lesson-7)
-  * review of student projects
-  * definition of tasks/issues
-  * time for questions, bugfixing, problem solving
+### [Lesson 7 - Threads, Tasks, Promises and Continuations](https://github.com/bicoom/oom/wiki/Lesson-7)
+  * threads and tasks
+  * promises and continuations
+  * reactive programming, async/await
 
 ### [Lesson 8 - Final Evaluation](https://github.com/bicoom/oom/wiki/Lesson-8)
   * final evaluation of student projects
