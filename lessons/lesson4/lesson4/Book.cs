@@ -59,6 +59,16 @@ namespace lesson4
             m_price = new Price(newPrice, currency);
         }
 
+        /// <summary>
+        /// Updates the book's price.
+        /// </summary>
+        /// <param name="newPrice">Price must not be negative.</param>
+        public void UpdatePrice(Price newPrice)
+        {
+            if (newPrice.Amount < 0) throw new ArgumentException("Price must not be negative.", nameof(newPrice));
+            m_price = newPrice;
+        }
+
         #region IItem implementation
 
         /// <summary>

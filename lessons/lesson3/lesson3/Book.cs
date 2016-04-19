@@ -41,6 +41,11 @@ namespace lesson3
         public Currency Currency { get; private set;}
 
         /// <summary>
+        /// Gets the price of this book.
+        /// </summary>
+        public decimal Price => m_price;
+
+        /// <summary>
         /// Updates the book's price.
         /// </summary>
         /// <param name="newPrice">Price must not be negative.</param>

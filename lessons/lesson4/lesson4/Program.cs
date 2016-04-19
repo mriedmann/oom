@@ -1,6 +1,4 @@
-﻿ using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -34,32 +32,7 @@ namespace lesson4
                 Console.WriteLine($"{x.Description.Truncate(50),-50} {x.Price.ConvertTo(currency).Amount,8:0.00} {currency}");
             }
 
-            SerializationExample(items);
-        }
-
-        private static void SerializationExample(IEnumerable<IItem> items)
-        {
-            // 1.
-            Console.WriteLine(JsonConvert.SerializeObject(items));
-
-            // 2.
-            Console.WriteLine(JsonConvert.SerializeObject(items, Formatting.Indented));
-
-            // 3.
-            var settings = new JsonSerializerSettings() { Formatting = Formatting.Indented, TypeNameHandling = TypeNameHandling.Auto };
-            Console.WriteLine(JsonConvert.SerializeObject(items, settings));
-
-            // 4.
-            var text = JsonConvert.SerializeObject(items, settings);
-            var desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            var filename = Path.Combine(desktop, "items.json");
-            File.WriteAllText(filename, text);
-
-            // 5.
-            var textFromFile = File.ReadAllText(filename);
-            var itemsFromFile = JsonConvert.DeserializeObject<IItem[]>(textFromFile, settings);
-            var currency = Currency.EUR;
-            foreach (var x in itemsFromFile) Console.WriteLine($"{x.Description.Truncate(50),-50} {x.Price.ConvertTo(currency).Amount,8:0.00} {currency}");
+            SerializationExample.Run(items);
         }
     }
 }

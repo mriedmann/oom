@@ -5,7 +5,7 @@
   * Introduction and Guidelines
     * [Wiki](https://github.com/bicoom/oom/wiki)
     * [Issues](https://github.com/bicoom/oom/issues)
-  * Setting up the development environment
+  * Setting up your development environment
     * C#
     * Git
   * Hello World
@@ -18,17 +18,16 @@
     * methods
     * fields and properties
     * visibility and encapsulation
-    * lambdas
   * Toolkit
     * web requests
 
 ### [Lesson 3 - Fundamentals II](https://github.com/bicoom/oom/wiki/Lesson-3)
   * Concepts
+    * methods as values
+    * lambda expressions
     * inheritance
     * interfaces
     * polymorphism
-  * Toolkit
-    * package managers (NuGet)
 
 ### [Lesson 4 - Software Quality](https://github.com/bicoom/oom/wiki/Lesson-4)
   * Concepts
@@ -36,23 +35,23 @@
     * unit tests
     * continuous integration [![Build status](https://ci.appveyor.com/api/projects/status/6e5h7fiyhtwdpbce/branch/master?svg=true)](https://ci.appveyor.com/project/bicoom/oom/branch/master)
   * Toolkit
-      * files
-      * serialization (JSON)
+    * package managers (NuGet)
+    * serialization (JSON)
+    * files
       
 ### [Lesson 5 - Code Review](https://github.com/bicoom/oom/wiki/Lesson-5)
   * review of student projects
   * definition of tasks/issues
   * time for questions, bugfixing, problem solving
 
-### [Lesson 6 - Events and Asynchrony](https://github.com/bicoom/oom/wiki/Lesson-6)
-  * push vs. pull
-  * asynchronous programming
-  * futures/promises/tasks, continuations
+### [Lesson 6 - Sequences, Queries and Combinators](https://github.com/bicoom/oom/wiki/Lesson-6)
+  * IEnumerable, foreach, yield return
+  * queries and combinators
 
-### [Lesson 7 - Code Review](https://github.com/bicoom/oom/wiki/Lesson-7)
-  * review of student projects
-  * definition of tasks/issues
-  * time for questions, bugfixing, problem solving
+### [Lesson 7 - Threads, Tasks, Promises and Continuations](https://github.com/bicoom/oom/wiki/Lesson-7)
+  * threads and tasks
+  * promises and continuations
+  * reactive programming, async/await
 
 ### [Lesson 8 - Final Evaluation](https://github.com/bicoom/oom/wiki/Lesson-8)
-  * final evaluation of student projects and associated tasks/issues
+  * final evaluation of student projects
