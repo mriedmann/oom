@@ -43,9 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DnsServer.cs" />
+    <Compile Include="IComputer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Server.cs" />
+    <Compile Include="GenericServer.cs" />
+    <Compile Include="WebServer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

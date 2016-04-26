@@ -11,10 +11,12 @@ namespace Task2
     {
         static void Main(string[] args)
         {
-            List<Server> servers = new List<Server>()
+            List<GenericServer> servers = new List<GenericServer>()
             {
-                new Server("8.8.8.8"),
-                new Server("8.8.4.4")
+                new DnsServer("8.8.8.8"),
+                new DnsServer("8.8.4.4"),
+                new WebServer("www.technikum-wien.at"),
+                new WebServer("www.ic15.at")
             };
 
             foreach (var server in servers)

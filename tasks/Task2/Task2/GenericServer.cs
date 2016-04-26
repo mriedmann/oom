@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Task2
 {
-    public class Server
+    public class GenericServer : IServer
     {
         public string HostnameOrIpAddress { get; set; }
         public string FullyQualifiedHostName { get; set; }
@@ -15,7 +15,7 @@ namespace Task2
 
         private DateTime lastSeen = DateTime.MinValue;
 
-        public Server(string hostnameOrIpAdress)
+        public GenericServer(string hostnameOrIpAdress)
         {
             HostnameOrIpAddress = hostnameOrIpAdress;
             updateFQHN();
