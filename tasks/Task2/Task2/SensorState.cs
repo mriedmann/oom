@@ -2,8 +2,8 @@
 {
     public enum SensorState
     {
-        Unknown,
-        OK,
-        Error
+        Unknown = 0,
+        OK = 1,
+        Error = 2
     }
 }

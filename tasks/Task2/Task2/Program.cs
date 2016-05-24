@@ -15,10 +15,15 @@ namespace Task2
     {
         static void Main(string[] args)
         {
+#if DEBUG
+            SensorFactory.RegisterSensorBuilder<IcmpSensor>(ServiceProtocol.ICMP, (sfr) => new MockedSensor());
+            SensorFactory.RegisterSensorBuilder<TcpPortSensor>(ServiceProtocol.TCP, (sfr) => new MockedSensor());
+            SensorFactory.RegisterSensorBuilder<UdpPortSensor>(ServiceProtocol.UDP, (sfr) => new MockedSensor());
+#else
             SensorFactory.RegisterSensorBuilder<IcmpSensor>(ServiceProtocol.ICMP, (sfr) => new IcmpSensor());
             SensorFactory.RegisterSensorBuilder<TcpPortSensor>(ServiceProtocol.TCP, (sfr) => new TcpPortSensor(sfr.PortNumber));
             SensorFactory.RegisterSensorBuilder<UdpPortSensor>(ServiceProtocol.UDP, (sfr) => new UdpPortSensor(sfr.PortNumber));
-
+#endif
             var serviceRecords = ObjectCache.Instance.GetOrSetObject("ServiceFileRecordsRegistryContent", () => LoadServiceRecordsFromFile());
 
             ServiceFileRecordRegistry.Load(serviceRecords);
