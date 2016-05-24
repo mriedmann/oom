@@ -45,6 +45,7 @@ namespace Task2
         {
             if (Directory.Exists(cacheDirPath))
                 Directory.Delete(cacheDirPath, true);
+            instance = null;
         }
 
         public T GetObject<T>(string key)
@@ -67,7 +68,6 @@ namespace Task2
         public void SetObject<T>(string key, T obj)
         {
             string path = Path.Combine(cacheDirPath, key + ".json");
-
 
             using (StreamWriter file = new StreamWriter(File.OpenWrite(path)))
             {

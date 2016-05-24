@@ -30,7 +30,8 @@ namespace Task2.Tests
             actualPath = Path.Combine(Environment.CurrentDirectory, "cache", "testObj.json");
             expectedPath = Path.Combine(Environment.CurrentDirectory, "exp_testObj.json");
 
-            File.Delete(actualPath);
+            if(File.Exists(actualPath))
+                File.Delete(actualPath);
         }
 
         [Test]
@@ -52,6 +53,9 @@ namespace Task2.Tests
         [Test]
         public void TestRetrieving()
         {
+            string path = Path.Combine(Environment.CurrentDirectory, "cache");
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
             File.Copy(this.expectedPath, this.actualPath, true);
 
             var expTestObject = new TestObject { Prop1 = "test", Prop2 = 1234 };
@@ -90,6 +94,9 @@ namespace Task2.Tests
         [Test]
         public void TestGetOrSetIfExists()
         {
+            string path = Path.Combine(Environment.CurrentDirectory, "cache");
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
             File.Copy(this.expectedPath, this.actualPath, true);
 
             var expTestObject = new TestObject { Prop1 = "test", Prop2 = 1234 };
@@ -103,13 +110,24 @@ namespace Task2.Tests
         }
 
         [Test]
-        public void TestCleaning()
+        public void TestCleaningIfSomethingExists()
         {
             ObjectCache.Instance.SetObject("testObj", new TestObject { Prop1 = "test", Prop2 = 1234 });
 
             FileAssert.Exists(actualPath);
             ObjectCache.Instance.Clear();
             FileAssert.DoesNotExist(actualPath);
+        }
+
+        [Test]
+        public void TestCleaningIfSomethingNothingExists()
+        {
+            ObjectCache.Instance.SetObject("testObj", new TestObject { Prop1 = "test", Prop2 = 1234 });
+
+            FileAssert.Exists(actualPath);
+            ObjectCache.Instance.Clear();
+            FileAssert.DoesNotExist(actualPath);
+            ObjectCache.Instance.Clear();
         }
     }
 }

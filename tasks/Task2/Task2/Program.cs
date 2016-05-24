@@ -16,6 +16,8 @@ namespace Task2
         static void Main(string[] args)
         {
 #if DEBUG
+            //ObjectCache.Instance.Clear();
+
             SensorFactory.RegisterSensorBuilder<IcmpSensor>(ServiceProtocol.ICMP, (sfr) => new MockedSensor());
             SensorFactory.RegisterSensorBuilder<TcpPortSensor>(ServiceProtocol.TCP, (sfr) => new MockedSensor());
             SensorFactory.RegisterSensorBuilder<UdpPortSensor>(ServiceProtocol.UDP, (sfr) => new MockedSensor());
