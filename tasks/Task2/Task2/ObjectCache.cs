@@ -43,8 +43,8 @@ namespace Task2
 
         public void Clear()
         {
-            if (!Directory.Exists(cacheDirPath))
-                Directory.Delete(cacheDirPath);
+            if (Directory.Exists(cacheDirPath))
+                Directory.Delete(cacheDirPath, true);
         }
 
         public T GetObject<T>(string key)

@@ -101,5 +101,15 @@ namespace Task2.Tests
             FileAssert.Exists(actualPath);
             FileAssert.AreEqual(expectedPath, actualPath);
         }
+
+        [Test]
+        public void TestCleaning()
+        {
+            ObjectCache.Instance.SetObject("testObj", new TestObject { Prop1 = "test", Prop2 = 1234 });
+
+            FileAssert.Exists(actualPath);
+            ObjectCache.Instance.Clear();
+            FileAssert.DoesNotExist(actualPath);
+        }
     }
 }
