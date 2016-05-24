@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -21,7 +22,8 @@ namespace Task2
             var serviceRecords = ObjectCache.Instance.GetOrSetObject("ServiceFileRecordsRegistryContent", () => LoadServiceRecordsFromFile());
 
             ServiceFileRecordRegistry.Load(serviceRecords);
-            ServiceFileRecordRegistry.AddServiceFileRecord(new ServiceFileRecord() {
+            ServiceFileRecordRegistry.AddServiceFileRecord(new ServiceFileRecord()
+            {
                 Name = "echo-icmp",
                 DisplayName = "ping",
                 PortNumber = 0,
@@ -49,63 +51,94 @@ namespace Task2
 
             Console.CursorVisible = false;
             Console.SetBufferSize(120, 40);
-            Console.SetWindowSize(Console.BufferWidth, Console.BufferHeight);
+            Console.SetWindowSize(85, Console.BufferHeight);
 
             Console.Clear();
             ConsoleBuffer buffer = new ConsoleBuffer(Console.BufferWidth, Console.BufferHeight, Console.BufferWidth, Console.BufferHeight);
 
             object bufferLock = new object();
+
+            buffer.Draw("= == === ==== ===== =========================================== ====== ==== === == =", 0, 0, 15);
+            buffer.Draw("= == === ==== ===== =      Fancy Console Host Monitor         = ====== ==== === == =", 0, 1, 15);
+            buffer.Draw("= == === ==== ===== =========================================== ====== ==== === == =", 0, 2, 15);
+
+            int offsetIndex = 4;
+            int[] offsets = servers.Select(s =>
+            {
+                var pos = offsetIndex;
+                offsetIndex += s.Services.Count() + 2;
+
+                buffer.Draw(string.Format("#### {0}", s.FullyQualifiedHostName), 0, pos, 15);
+
+                return pos;
+            }).ToArray();
+
+            foreach (var server in servers)
+            {
+                Task.Factory.StartNew((object s) =>
+                {
+                    while (true)
+                    {
+                        lock (s)
+                        {
+                            ((Server)s).UpdateServices();
+                        }
+                        System.Threading.Thread.Sleep(1000);
+                    }
+                }, server);
+            }
+
             while (true)
             {
-                int rowIndex = 0;
-
-                Parallel.ForEach(servers, server => {
-                    Parallel.ForEach(server.Services, (s) => s.CheckStateAsync().Wait(60000));
-
-                    lock (bufferLock)
-                    {
-
-
-                        buffer.clearRow(rowIndex);
-                        buffer.Draw(string.Format("#### {0}", server.FullyQualifiedHostName), 0, rowIndex++, 15);
-                        foreach (var service in server.Services)
+                Parallel.For(0, servers.Count, i =>
+                {
+                    lock (servers[i])
+                        lock (bufferLock)
                         {
-                            var nameText = string.Format("{0}:", service.DisplayName);
-                            var statusText = string.Format("{0,20}", service.LastState);
-                            var timingText = string.Format("{0,8:###.00}ms  {1,8:###.00}ms +- {2,6:###.00}ms",
-                                service.LastCheckDuration.TotalMilliseconds,
-                                service.LastCheckDurationMean,
-                                service.LastCheckDurationStdDev);
+                            var j = 0;
+                            var server = servers[i];
+                            var offset = offsets[i];
+                            Func<int, int> rowIndex = ((p) => { var r = offset + j; j += p; return r; });            
 
-                            short statusFlags = 0;
-                            switch (service.LastState)
+                            rowIndex(1);
+
+                            foreach (var service in server.Services)
                             {
-                                case ServiceState.Unknown:
-                                    statusFlags = 13;
-                                    break;
-                                case ServiceState.Reachable:
-                                    statusFlags = 10;
-                                    break;
-                                case ServiceState.Unreachable:
-                                    statusFlags = 12;
-                                    break;
-                                default:
-                                    statusFlags = 15;
-                                    break;
+                                var nameText = string.Format("{0}:", service.DisplayName);
+                                var statusText = string.Format("{0,20}", service.LastState);
+                                var timingText = string.Format("{0,8:###.00}ms  {1,8:###.00}ms +- {2,6:###.00}ms",
+                                    service.LastCheckDuration.TotalMilliseconds,
+                                    service.LastCheckDurationMean,
+                                    service.LastCheckDurationStdDev);
+
+                                short statusFlags = 0;
+                                switch (service.LastState)
+                                {
+                                    case ServiceState.Unknown:
+                                        statusFlags = 13;
+                                        break;
+                                    case ServiceState.Reachable:
+                                        statusFlags = 10;
+                                        break;
+                                    case ServiceState.Unreachable:
+                                        statusFlags = 12;
+                                        break;
+                                    default:
+                                        statusFlags = 15;
+                                        break;
+                                }
+
+                                buffer.clearRow(rowIndex(0));
+                                buffer.Draw(nameText, 0, rowIndex(0), 15);
+                                buffer.Draw(statusText, 20, rowIndex(0), statusFlags);
+                                buffer.Draw(timingText, 50, rowIndex(0), 15);
+
+                                rowIndex(1);
                             }
-
-                            buffer.clearRow(rowIndex);
-                            buffer.Draw(nameText, 0, rowIndex, 15);
-                            buffer.Draw(statusText, 20, rowIndex, statusFlags);
-                            buffer.Draw(timingText, 50, rowIndex, 15);
-
-                            rowIndex++;
                         }
-                        rowIndex += 2;
-                        buffer.Print();
-                    }
                 });
 
+                buffer.Print();
                 System.Threading.Thread.Sleep(1000);
             }
         }

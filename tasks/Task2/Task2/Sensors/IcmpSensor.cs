@@ -10,7 +10,7 @@ namespace Task2.Sensors
     public class IcmpSensor : ISensor
     {
 
-        public SensorState DoCheckState(IServer target)
+        public SensorState DoCheckState(Server target)
         {
             try
             {

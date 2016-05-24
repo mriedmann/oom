@@ -14,6 +14,6 @@ namespace Task2
         /// </summary>
         /// <param name="target">Target Server</param>
         /// <returns>Returns OK if successfull, ERROR if not</returns>
-        SensorState DoCheckState(IServer target);
+        SensorState DoCheckState(Server target);
     }
 }

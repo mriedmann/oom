@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace Task2
 {
-    public class Server : IServer
+    public class Server
     {
         public string HostnameOrIpAddress { get; private set; }
-        public string FullyQualifiedHostName => fqhn ?? fetchFQHN();
-        public IPAddress[] IPv4Addresses => IPv4Addresses ?? fetchIPv4Adresses();
+        public string FullyQualifiedHostName => fqhn ?? (fqhn = fetchFQHN());
+        public IPAddress[] IPv4Addresses => ipv4Addresses ?? (ipv4Addresses = fetchIPv4Adresses());
 
         public Service[] Services { get { return services.ToArray(); } }
 
         private List<Service> services = new List<Service>();
 
         private string fqhn = null;
-        private IPAddress[] ipv4Addresses;
+        private IPAddress[] ipv4Addresses = null;
 
         public Server(string hostnameOrIpAdress, string[] serviceNames)
         {
@@ -36,15 +36,8 @@ namespace Task2
 
         public void UpdateServices()
         {
-            Task[] tasks = Services.Select((service) =>
-            {
-                Task task = service.CheckStateAsync();
-                task.Start();
-                return task;
-            }).ToArray();
-
-            if (!Task.WaitAll(tasks, TimeSpan.FromSeconds(60)))
-                new TimeoutException();
+            foreach(var service in services)
+                service.CheckState();
         }
 
         private IPAddress[] fetchIPv4Adresses()

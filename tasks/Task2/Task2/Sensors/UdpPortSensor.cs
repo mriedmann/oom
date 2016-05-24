@@ -17,7 +17,7 @@ namespace Task2.Sensors
             Port = portNumber;
         }
 
-        public SensorState DoCheckState(IServer target)
+        public SensorState DoCheckState(Server target)
         {
             try
             {

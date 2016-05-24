@@ -10,7 +10,7 @@ namespace Task2
     public class Service
     {
         public string DisplayName { get; private set; }
-        public IServer ParentServer { get; private set; }
+        public Server ParentServer { get; private set; }
 
         public DateTime LastCheck { get; protected set; }
         public TimeSpan LastCheckDuration { get; protected set; }
@@ -34,7 +34,7 @@ namespace Task2
             }
         }
 
-        public Service(string displayName, IServer parentServer, ISensor sensor)
+        public Service(string displayName, Server parentServer, ISensor sensor)
         {
             ParentServer = parentServer;
             DisplayName = displayName;
@@ -44,7 +44,7 @@ namespace Task2
             LastCheckDurations = new Queue<TimeSpan>(10);
         }
 
-        public Service(string serviceRecordName, IServer parentServer)
+        public Service(string serviceRecordName, Server parentServer)
         {
             var record = ServiceFileRecordRegistry.GetServiceFileRecord(serviceRecordName);
 
@@ -62,19 +62,13 @@ namespace Task2
             SensorState state = sensor.DoCheckState(ParentServer);
 
             LastCheckDuration = DateTime.Now - startDate;
-            LastCheck = startDate;
             LastState = ConvertSensorToServiceState(state);
+            LastCheck = startDate;
         }
 
         public void CheckState()
         {
             DoCheckState();
-            SaveLastCheckDuration();
-        }
-
-        public async Task CheckStateAsync()
-        {
-            await Task.Run(() => DoCheckState());
             SaveLastCheckDuration();
         }
 
