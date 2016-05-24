@@ -23,10 +23,18 @@ namespace Task2
         private string cacheDirPath;
         private Dictionary<string, object> store = new Dictionary<string, object>();
 
-        private ObjectCache()
+        public ObjectCache()
         {
             string path = Path.Combine(Environment.CurrentDirectory, "cache");
 
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+
+            cacheDirPath = path;
+        }
+
+        public ObjectCache(string path)
+        {
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
 
