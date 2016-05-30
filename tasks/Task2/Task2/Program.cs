@@ -13,6 +13,11 @@ namespace Task2
 {
     class Program
     {
+        static int PreferedConsoleBufferWidth => 85;
+        static int PreferedConsoleBufferHeight => Console.BufferHeight;
+        static int PreferedConsoleWindowWidth => PreferedConsoleBufferWidth;
+        static int PreferedConsoleWindowHeight => 40;
+
         static void Main(string[] args)
         {
 #if DEBUG
@@ -57,8 +62,21 @@ namespace Task2
                 servers.Add(new Server(serverRecord.HostnameOrIpAddress, serverRecord.ServiceNames));
 
             Console.CursorVisible = false;
-            Console.SetBufferSize(120, 40);
-            Console.SetWindowSize(85, Console.BufferHeight);
+
+            int bufferWidth = PreferedConsoleBufferWidth > Console.BufferWidth ? PreferedConsoleBufferWidth : Console.BufferWidth;
+            int bufferHeight = PreferedConsoleBufferHeight > Console.BufferHeight ? PreferedConsoleBufferHeight : Console.BufferHeight;
+
+            Console.SetBufferSize(bufferWidth, bufferHeight);
+            try
+            {
+                Console.SetWindowSize(PreferedConsoleWindowWidth, PreferedConsoleWindowHeight );
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR: {0}", ex.Message);
+                Console.WriteLine("== Continue With Enter ==");
+                Console.ReadLine();
+            }
 
             Console.Clear();
             ConsoleBuffer buffer = new ConsoleBuffer(Console.BufferWidth, Console.BufferHeight, Console.BufferWidth, Console.BufferHeight);
