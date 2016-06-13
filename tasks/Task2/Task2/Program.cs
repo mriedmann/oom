@@ -8,6 +8,7 @@ using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Task2.Helpers;
 using Task2.Sensors;
@@ -103,39 +104,28 @@ namespace Task2
                 offsets.Add(s.HostnameOrIpAddress, pos);
             }
             buffer.Print();
-
-            using (var serverObservable = new Subject<string>())
-            {
-                foreach (var server in servers.Values) {
-                    Task.Factory.StartNew((obj) =>
-                    {
-                        while (true)
-                        {
-                            string s = obj as string;
-                            lock (servers[s])
-                            {
-                                servers[s].UpdateServices();
-                            }
-                            serverObservable.OnNext(s);
-                            System.Threading.Thread.Sleep(1000);
-                        }
-                    }, server.HostnameOrIpAddress);
-                }
-
-                serverObservable
-                        .Subscribe(s => {
-                            lock (servers[s])
-                            {
-                                RedrawServer(servers[s]);
-                            }
-                        });
-
-                while (!Console.KeyAvailable)
+            
+            Observable.Merge(
+                servers.Values.Select(server => Observable.Interval(TimeSpan.FromSeconds(1.0)).Select(_ => server))
+                )
+            .Do(server => {
+                lock (server)
                 {
-                    buffer.Print();
-                    System.Threading.Thread.Sleep(500);
+                    server.UpdateServices();
                 }
-            }
+            })
+            .Do(server => {
+                lock (server)
+                {
+                    RedrawServer(server);
+                }
+            })
+            .Sample(TimeSpan.FromSeconds(0.5))
+            .Do(_ => buffer.Print())
+            .RunAsync(CancellationToken.None)
+            ;
+
+            Console.ReadKey();
         }
 
         static void RedrawServer(Server server)
